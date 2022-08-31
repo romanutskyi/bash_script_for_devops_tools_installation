@@ -38,6 +38,11 @@ echo \
 apt-get update
 apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 
+#Create docker group, and add current user to it
+groupadd docker
+usermod -aG docker $USER
+# Don't forget about log out and lo in, and then use this command "newgrp docker"
+
 #Add Jenkins user to Docker group
 usermod -a -G docker jenkins
 systemctl restart jenkins
